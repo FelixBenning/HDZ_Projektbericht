@@ -1,0 +1,28 @@
+{{< include _macro_processing.qmd >}}
+
+# Preface {.unnumbered}
+
+
+
+
+## Interactions: GitHub Issues and Discussions
+
+In [State of Quarto for
+Mathematics](https://github.com/quarto-dev/quarto-cli/discussions/12927#discussion-8446013)
+I Summarize all other issues and discussions related to the usability of Quarto
+for mathematical works.
+
+1. [Global TeX Macros](https://github.com/quarto-dev/quarto-cli/discussions/12838) summarizes the attempts other people have made to obtain `Global TeX Macros` in Quarto. List the ways that do not work and finally the only way that does work (see also @sec-global-macros)
+   - To make global macros work I asked a [technical
+   question](https://github.com/quarto-dev/quarto-cli/issues/12898) on how to
+   package my solution for `Global Macros` in a template. Unfortunately, the end result is somewhat unsatisfying. 
+   
+2. In the [Discussion on Equation referencing](https://github.com/quarto-dev/quarto-cli/issues/2275) I contributed
+	- a [suggestion](https://github.com/quarto-dev/quarto-cli/issues/2275#issuecomment-2944961780) how this feature may be implemented by Quarto developers
+	- a [workaround](https://github.com/quarto-dev/quarto-cli/issues/2275#issuecomment-2966281999) that was not previously suggested (See also @sec-equations-quarto)
+3. I [reported a bug](https://github.com/quarto-dev/quarto-cli/issues/12928): Quarto uses the 'Proof name' differently in `html` and `pdf`/`LaTeX`.
+4. In opened a [discussion](https://github.com/quarto-dev/quarto-cli/discussions/12878)
+on whether Quarto developers may implement collapsible proofs out of the box
+1. I opened a [feature request](https://github.com/mathjax/MathJax/issues/3367) on the MathJax repository on whether it may implement the LaTeX package [aligned-overset](https://ctan.org/pkg/aligned-overset). The maintainer suggested a partial solution which is now included in the template (see @sec-aligned-overset).
+2. Finally I asked the maintainer of the [h5p-standalone](https://github.com/tunapanda/h5p-standalone) package for help
+getting this package to work. First, I [messed up the execution order](https://github.com/tunapanda/h5p-standalone/issues/174), then [I could not get relative links to work](https://github.com/tunapanda/h5p-standalone/issues/176).

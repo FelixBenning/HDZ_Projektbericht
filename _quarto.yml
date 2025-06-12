@@ -1,0 +1,39 @@
+project:
+  type: math-book
+  resources: assets
+
+book:
+  title: "Abschlussbericht"
+  author: "Felix Benning"
+  date: last-modified
+  site-url: https://unassuming.page/hdz_abschlussbericht
+  # favicon: logo.png
+  repo-url: https://github.com/FelixBenning/hdz_abschlussbericht 
+  chapters:
+    - index.qmd
+  appendices:
+    - overview.qmd
+    - usage.qmd
+    - extensions.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  math-book-html:
+    theme:
+      - cosmo # select a theme from (https://bootswatch.com/)
+      - brand # use a _brand.yml file to customize (https://posit-dev.github.io/brand-yml/)
+  math-book-pdf:
+    keep-tex: false # set to true to obtain tex files
+    cite-method: biblatex # or natbib
+    pdf-engine: xelatex # alternatives: pdflatex (old, most common) or lualatex
+
+editor:
+  render-on-save: true
+
+comments:
+  hypothesis: true # allow comments (https://web.hypothes.is/)
+
+
+

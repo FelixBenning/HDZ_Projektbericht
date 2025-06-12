@@ -1,0 +1,35 @@
+title: Math Book Template 
+author: Felix Benning 
+version: 1.0.0
+quarto-required: ">=1.7.0"
+contributes:
+  project:
+    project:
+      type: book
+    
+    book:
+      repo-actions: [edit, issue, source]
+      downloads: [pdf]
+      search: true
+
+  format: 
+    html:
+      toc: true
+      html-math-method: mathjax
+      footnotes-hover: true
+      format-resources:
+        - assets
+      include-in-header:
+      - utils/mathjax.html 
+      include-after-body:
+      - utils/h5p-collector.html
+    
+    pdf:
+      documentclass: book
+      classoption: oneside
+      papersize: a4paper
+      code-block-bg: "#f8f8f8"
+      mathfont: NewCMMath-Book.otf
+      colorlinks: true
+      template-partials:
+      - before-title.tex
