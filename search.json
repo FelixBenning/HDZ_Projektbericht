@@ -1,0 +1,200 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Abschlussbericht",
+    "section": "",
+    "text": "Preface\nThis project aimed to create a reusable and well-documented Quarto template tailored to the needs of mathematicians, particularly for educational content. The result is available at https://www.FelixBenning.github.io/math-book/, which provides both the template and its extensive documentation.\nThis final report was generated using this template (reusing some of the documentation) and is also available as a webpage at https://www.FelixBenning.github.io/HDZ_Projectbericht/.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "overview.html",
+    "href": "overview.html",
+    "title": "1  Overview",
+    "section": "",
+    "text": "1.1 The Goood\nThis is an overview of the template for a Quarto math book or lecture script. Quarto1 is a framework to render Markdown documents into html and via LaTeX into pdf. The reason you may want to target html is immediately illustrated if you read the web version of this documentation. For example, try to hover over the footnote on “Quarto”, or over the following equation reference Equation 1.1.\nThis interactivity is something that is impossible with pdf. And since LaTeX can only really target pdf this is a problem. However LaTeX is really good at equations and other academic features that make it difficult to replace. Quarto provides these features.\nQuarto has",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview.html#the-goood",
+    "href": "overview.html#the-goood",
+    "title": "1  Overview",
+    "section": "",
+    "text": "bibliographic reference management that can generate citations e.g. Knuth (1984) based on the cite keys in bibtex .bibtex and biblatex .bib files. Try to hover over the citation!\nIt has machinery to produce theorems\nIt has machinery to cross-reference figures, tables, sections, theorems, etc.\nAnd most importantly for maths, it is integrated with the mathjax JavaScript library that can render LaTeX equations on websites, like this one for example: \\[\n\\mathbb{N}\\subset \\mathbb{Z}\\subset \\mathbb{Q}\\subset \\mathbb{R}\\subset \\mathbb{C}\n\\tag{1.1}\\]\n\n\n1.1.1 H5P integration demo\nSince Quarto can target html it is easy to integrate H5P elements. E.g. here is H5P’s default multiple choice example (source).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview.html#the-bad",
+    "href": "overview.html#the-bad",
+    "title": "1  Overview",
+    "section": "1.2 The Bad",
+    "text": "1.2 The Bad\n\nGlobal LaTeX Macros do not work well out of the box. However this problem is fixable (see Section A.2 and this GitHub Discussion)\nThe Reference System\n\nIt is impossible, or at least very difficult, to reference individual lines of aligned equations (see Section A.3.2)\nIt is not possible to use shared counters for theorems and lemmas as in LaTeX (see Section A.3.4).\nThis makes it more difficult to find a theorem manually, because the numbers on the lemmas do not tell you whether to look before or after. Digitally however this is less relevant since you do not have to manually search. And it is most likely possible to fix this for LaTeX with templates, so this could be “fixed” for the print version.\n\nInconsistent Behavior Quarto has idiosyncrasies it does not consider bugs: The behavior of\n::: {.proof name=\"Proof name\"}\nProof content\n:::\nis different for LaTeX and html. In LaTeX it is typical that the name replaces everything. So instead of Proof. it would say Proof name.. Quarto does the same to be “consistent”. However in html the name is only used in brackets after the name, i.e. the end result is Proof (Proof name). This makes it difficult to use this feature for multi-target documents.\nSync to Code SyncTeX is an amazing tool that stores crossreference data in a file. The LaTeX Workshop extension for VSCode uses this file to allow users to Cmd + Click on text in the pdf to be directed to the LaTeX code that produced this text. Similarly it is possible to jump from code to the corresponding place in the pdf. Synctex is similarly integrated with other editors. This is something that does not really exist for Quarto. To my knowledge this does not even exist for html preview in VSCode so this may be very difficult to implement. However there exists a partial WYSIWYG2 editor for quarto as part of the VSCode extension (right click: “Edit in Visual Mode”). The downside of this mode is that\n\nit does not preserve existing code\nit does not render Global Macros (Section A.2) correctly\nit is incompatible with the Vim extension of VSCode that I personally like.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview.html#sec-the-ugly",
+    "href": "overview.html#sec-the-ugly",
+    "title": "1  Overview",
+    "section": "1.3 The Ugly",
+    "text": "1.3 The Ugly\nSince Quarto can target html it may eventually be possible to make proofs collapsible although at the moment this is not possible out of the box. Callouty Theorems is an extension to make this happen. But the way it does it is ugly:\n\nIt wraps theorems and proofs into callout blocks that are visually too prominent, especially for proofs.\nSince it is only a wrapper, the hover-overs only reference the inner part\nand the theorem has two titles, the normal title and the title of the wrapper\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "overview.html#footnotes",
+    "href": "overview.html#footnotes",
+    "title": "1  Overview",
+    "section": "",
+    "text": "Quarto is a language agnostic the successor to R Markdown, both of which are built on the universal document converter Pandoc. R Markdown allowed for R code snippets to be included in a markdown document which were executed before display. Quarto also allows this for Python and JavaScript.↩︎\nWhat you see is what you get↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Behind the Scenes",
+    "section": "",
+    "text": "2.1 Interactivity\nTo keep the technical details light, I will only give an overview of what I done and provide links to the technical details.\nThe reason one may want to provide mathematical documents as a website is of course interactivity. Basic form such as hover-overs for references already work out of the box.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Behind the Scenes</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#interactivity",
+    "href": "summary.html#interactivity",
+    "title": "2  Behind the Scenes",
+    "section": "",
+    "text": "H5P Integration: With help from the maintainer with (the execution order of Javascript and relative links) I integrated the h5p-standalone project into this template. The inclusion of h5p elements is documented in Section A.1.\nCollapsible Proofs are currently not available out of the box. But it should be relatively easy to create an extension to enable them in the future. There is an extension called Callouty Theorems but the solution is not ideal (Details in Section 1.3)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Behind the Scenes</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#equations",
+    "href": "summary.html#equations",
+    "title": "2  Behind the Scenes",
+    "section": "2.2 Equations",
+    "text": "2.2 Equations\nAn equation \\[\\begin{aligned}\n    (a+b)^2\n    &= (a+b)(a+b)\n    \\\\\n    &= a^2 + 2ab + b^2\n\\end{aligned}\n\\tag{2.1}\\] may want to be referenced like so, (Equation 2.1). While Quarto does clearly provide a mechanism to do so, it does not provide a mechanism to reference individual lines of an equation. This is a feature that LaTeX does provide and other users have already reported this feature as missing in this discussion on GitHub. This is not often a problem, since you mostly want to reference the entire equation. But it always hurts, when a feature is taken away from you, so people are naturally looking for workarounds. However the workaround posted in the discussion linked above does not work for referencing equation across chapters and breaks all the Quarto features (like hover over) for equations. For this reason I suggest a different workaround (Workaround 2 in Section A.3.2). It works across chapters using the Quarto citation mechanism but causes more work in the few places where it is actually necessary to reference individual lines.\n\n2.2.1 Aligned-Overset\nThe LaTeX package aligned-overset is something I use often. It is not available in MathJax, which renders mathematical equations in html. I therefore opened a feature request on the MathJax repository on whether it may implement this package. The maintainer suggested a partial solution which is now included in the template (see Section A.3.3).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Behind the Scenes</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#global-tex-macros",
+    "href": "summary.html#global-tex-macros",
+    "title": "2  Behind the Scenes",
+    "section": "2.3 Global TeX Macros",
+    "text": "2.3 Global TeX Macros\nOne of the main technical challenges was to enable global LaTeX macros across a Quarto project. This functionality is crucial for large mathematical documents, particularly textbooks or collections of exercises. You can find a motivation for the use of Macros and the way to enable them in Section A.2.\nThe issue that needs to be overcome boils down to the following:\n\nThe LaTeX/pdf output is one large document with multiple chapters. Macros should therefore only be included once in the entire document. LaTeX in fact throws an error if a Macro is included twice to warn the user of accidental redefinitions.\nThe html output produces a webpage for each chapter. Macros must therefore be included in every chapter.\n\nWhile Quarto does provide mechanisms to include something in every file, the Macros also need to be processed. And for technical reasons it would be preferable if they were processed during the conversion from Quarto to html and not later by the JavaScript library. This design constraint made this very difficult. A full writeup was provided as a GitHub Discussion to be publicly available. The solution I used for this template is described as an “Alternative” there, because it requires some technical trickery that would be annoying if you had to do it yourself. But as part of a template this seems better, as it allows the macros to be documented with comments.\nTo package the solution nicely, I wanted to hide the technical stuff in the template. But this unfortunately does not work as anticipated, as discussed in this issue.\nThe end result of a few days of trying is a solution with some ugly quirks: You need to include a special line at the top of every chapter file to get Macros to work and there is a _macro_processing.qmd file in your root directory that must not be touched.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Behind the Scenes</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html#pedagogical-context-and-future-use",
+    "href": "summary.html#pedagogical-context-and-future-use",
+    "title": "2  Behind the Scenes",
+    "section": "2.4 Pedagogical Context and Future Use",
+    "text": "2.4 Pedagogical Context and Future Use\nThe primary audience of this template are mathematicians that want to create interactive content. Svenja Kaiser, a PhD candidate in mathematics education, expressed interest in using the template to translate proprietary content from an InnoMA project into open formats. One option she considered was H5P which nicely integrates with this template. However a solution to enable equations in H5P is still needed.\nWhile there are still some rough edges that may need polishing, I can see Quarto eventually satisfying all the requirements needed to create great interactive mathematical content.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Behind the Scenes</span>"
+    ]
+  },
+  {
+    "objectID": "usage.html",
+    "href": "usage.html",
+    "title": "Appendix A — User guide",
+    "section": "",
+    "text": "A.1 H5P Integration\nFor the standard features refer to Quarto’s documentation we will focus on the features specific or at least important to this template.\nThis template includes the tunapanda/h5p-standalone project and thereby supports the addition of H5P files without the need for a separate H5P server. H5P files (with the .h5p file extension may be added as follows):",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>User guide</span>"
+    ]
+  },
+  {
+    "objectID": "usage.html#sec-h5p",
+    "href": "usage.html#sec-h5p",
+    "title": "Appendix A — User guide",
+    "section": "",
+    "text": "Change the .h5p file extension to a .zip extension\nunzip the zip file and place the resulting folder (referred to as my-h5p-folder in the following) into the folder assets/h5p-content/ of the Quarto project.\nIn Quarto markdown file where you want to add the h5p content add the following\n::: {#my-h5p-folder .h5p}\n:::\nor alternatively\n&lt;div id=\"my-h5p-folder\" class=\"h5p\"&gt;&lt;/div&gt;\n\n\n\n\n\n\n\nPossible issue: Missing libraries\n\n\n\nHistorically, every H5P file with the extension .h5p used to include the H5P libraries necessary to make the content work. More recently, these libraries are not always included (see this GitHub issue). In this case the my-h5p-folder does not include folders of the form H5P.AdvancedText, H5P.Audio, H5P.Blanks, etc. But without these libraries the content does not work.\nTo make it work, simply copy these libraries from an older h5p file into this folder (e.g. from the multiple-choice example of this template)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>User guide</span>"
+    ]
+  },
+  {
+    "objectID": "usage.html#sec-global-macros",
+    "href": "usage.html#sec-global-macros",
+    "title": "Appendix A — User guide",
+    "section": "A.2 Global LaTeX Macros",
+    "text": "A.2 Global LaTeX Macros\nA very important feature for LaTeX users is the possibility to define custom macros. For example the following custom macros\n\\newcommand{\\real}{\\mathbb{R}}\n\\newcommand{\\complex}{\\mathbb{C}}\ncan be used to produce \\(\\mathbb{R}\\subset \\mathbb{C}\\) from \\real \\subset \\complex.\n\n\n\n\n\n\nWhat is the benefit of macros?\n\n\n\n\n\nThe notation for the natural numbers \\(\\mathbb{N}= \\{1,2,3,\\dots\\}\\) requires “Blackboard letters” for example. Those can be achieved using the command \\mathbb – specifically \\mathbb{N}. A custom macro may be defined as follows in LaTeX\n\\newcommand{\\nat}{\\mathbb{N}}\nObserve that such custom macros may not only be used to abbreviate commands, e.g. \\nat instead of \\mathbb{N} to produce \\(\\mathbb{N}\\), but it can also be used to create semantic placeholders for symbols that can be changed later. For example one may initially choose the letter \\(\\eta\\) to denote a step size before realizing that this letter is needed for something else. If a \\stepsize macro is used it is trivial to replace\n\\newcommand{\\stepsize}{\\eta}\nby a different letter, say \\(h\\).\n\\newcommand{\\stepsize}{h}\nAn update to the command immediately updates every occurrence of \\stepsize.\n\n\n\nThese macro definitions can be placed into a global macros.tex file and annotated with LaTeX comments. This file will be automatically included in the LaTeX target and therefore the pdf.\nUnfortunately the macros cannot be automatically included in the html target. To make sure macros also work for the html target it is necessary to add the following line to the start of any .qmd chapter file.\n{{&lt; include _macro_processing.qmd &gt;}}\n\n\n\n\n\n\nImportant\n\n\n\nThis templates includes the _macro_processing.qmd file in the root directory. If this template is added to an existing project, this file must be manually added to the root of the project.\n\n\nDetails about this design can be found in in this GitHub discussion. The Quarto developers may add a better mechanism in the future.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>User guide</span>"
+    ]
+  },
+  {
+    "objectID": "usage.html#sec-usage-equations",
+    "href": "usage.html#sec-usage-equations",
+    "title": "Appendix A — User guide",
+    "section": "A.3 Mathematical equations",
+    "text": "A.3 Mathematical equations\nTo understand how Quarto deals with mathematical equations it is necessary to understand how equations are handled in LaTeX and html (i.e. the JavaScript libraries mathjax or KaTeX). Readers that understand equations in Quarto and their limitations may want to skip to Section A.3.3 where the aligned-overset feature is discussed that is special to this template.\nLaTeX is built on TeX which simply toggles between ‘normal mode’ and ‘math mode’ using dollar signs e.g. $e^{i\\pi} + 1 = 0$ renders as: \\(e^{i\\pi} + 1 = 0\\). For display equations TeX allows for the use of double dollar signs, e.g.\n$$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$\nwhich is rendered like this \\[\n    f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}.\n\\] JavaScript libraries like mathjax or katex only implement math mode and generally scan for this dollar syntax in an html page to process it. However, at least mathjax can also be configured to work with the more advanced equation environments provided by LaTeX.\n\nA.3.1 Equations in LaTeX\nLaTeX built more sophisticated display equation environments on top of this simple toggle and it is therefore not recommended to use these primitive TeX macros for display equations in LaTeX. Instead of $$ math $$ LaTeX authors are encouraged to use the syntax\n\\begin{environment}\n    math\n\\end{environment}\nHere the word environment is replaced by one of the following:\n\nequation results in a numbered display equation, equation* in an un-numbered display equation.\n\n\n\n\n\n\nNote\n\n\n\n\\[...\\] is an alias for the equation* environment.\n\n\nIn contrast to the primitive TeX syntax ($$ ... $$), LaTeX equations adjusts the spacing of the equation depending on the length of the sentence before and after the equation. If the line before the equation only contains a single word, the equation is packed tighter since there is already a lot of white space to the right of this word.\nalign is a numbered display equation environment that allows the user to set alignment points with & letters. For example\n\\begin{align}\n    (a + b)^2\n    &= (a + b)(a + b) \\\\\n    &= a^2 + ab + ba + b^2 \\\\\n    &= a^2 + 2ab + b^2\n\\end{align}\nwhich is roughly2 rendered as\n\\[\\begin{align}\n     \\tag{1}\n     (a + b)^2\n     &= (a + b)(a + b) \\\\\n     \\tag{2}\n     &= a^2 + ab + ba + b^2 \\\\\n     \\tag{3}\n     &= a^2 + 2ab + b^2\n\\end{align}\\]\nThe align* environment is again the un-numbered pendant which results in \\[\n\\begin{aligned}\n(a + b)^2 &= (a + b)(a + b) \\\\\n         &= a^2 + ab + ba + b^2 \\\\\n         &= a^2 + 2ab + b^2\n\\end{aligned}\n\\]\nalignat (or alignat*) works similar to align (or align*), but allows for multiple alignment columns.\n\n\n\nA.3.2 Equations in Quarto\nQuarto essentially only allows the dollar sign syntax. However, the display equations using double dollar signs ($$ ... $$) are converted to LaTeX equation environments when targeting pdf via LaTeX. More specifically, un-annotated equations are converted to un-numbered equation* environments while a ‘tagged equation’\n$$\n    f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}\n$$ {#eq-differentiation}\nis converted into a numbered equation\n\\begin{equation}\n    \\label{eq-differentiation}\n    f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}\n\\end{equation}\nrendered as \\[\n    f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}\n\\tag{A.1}\\]\nThe key @eq-differentiation can be used to produce a link (Equation A.1).\nUnfortunately Quarto does not support aligned equations using the align environment. However it is possible to use the aligned environment inside of math mode; similarly the alignedat environment can be used in math mode in place of alignat.\nTo produce an aligned equation one can therefore use the syntax\n$$\n\\begin{aligned}\n    (a + b)^2\n    &= (a + b)(a + b) \\\\\n    &= a^2 + ab + ba + b^2 \\\\\n    &= a^2 + 2ab + b^2\n\\end{aligned}\n$$ {#eq-aligned-demo}\nThis renders as \\[\n\\begin{aligned}\n    (a + b)^2\n    &= (a + b)(a + b) \\\\\n    &= a^2 + ab + ba + b^2 \\\\\n    &= a^2 + 2ab + b^2\n\\end{aligned}\n\\tag{A.2}\\] Observe that the ‘Quarto-way’ to tag equations only allows for one label per equation which is different from line-by-line numbering that LaTeX provides with the align environment. This is an unsolved issue at the moment.\nThere are two possible workarounds. The first workaround I strongly recommend against, under the assumption that:\n\nYou want to reference equations from different chapters.\nYou want to keep the equation preview on hover in html.\n\nI recommend the second workaround if you are willing to duplicate the equation for the few cases you actually need to reference particular lines in aligned equations. This assumes that:\n\nAligned equations explain how to get from the first element to the last. Afterwards the steps in the middle can generally be forgotten. So in the vast majority of cases it is unnecessary to label individual lines.\n\n\n\n\n\n\n\nWorkaround 1: Ignore Quarto\n\n\n\n\n\nRecall that mathjax can deal with LaTeX equation environments? Instead of the dollar syntax you can simply place naked \\begin{...} \\end{...} tags into your .qmd files. This will be correctly rendered by mathjax in html and will correctly be converted into LaTeX. But there are caveats.\nThe first caveat can be fixed: mathjax does not treat equation differently from equation* by default and omits equation numbers altogether by default. This setting can be changed and Mathjax is already configured to behave like LaTeX in this template (this is not the default of Quarto).\nBut since the mathjax equation numbering is independent of Quartos, the numbering is going to be incorrect if you use both. For this reason some authors recommend never using the Quarto syntax and only relying on mathjax for equation numbering. To do so simply use the \\label{eq-name} and \\ref{eq-name} tags you may know from LaTeX. However,\n\nmathjax cannot see anything beyond the current html page. In particular it cannot see the equations in other chapters, which makes it impossible to reference equations from other chapters with this approach.\nThe hover-over (e.g. Equation A.2) Quarto provides will be broken\nmathjax does not know the chapter it is in, so it cannot easily use the format (1.3) where 1 refers to the chapter and 3 means it is the third equation of this chapter. The tagformat of mathjax can however be changed and this template implements a heuristic to find the correct chapter number (assumes there is only one top level heading per .qmd file).\n\n\n\n\n\n\n\n\n\n\nWorkaround 2: Case-by-case treatment\n\n\n\n\n\nTypically, you do not need to reference individual lines in an equation. The following workaround works well if you only need this in a handful of places and only reference these individual equations within the same chapter. It works by duplicating the equation and providing a version for the html target separately for a version for the pdf (i.e. LaTeX target). It looks like this:\n\\[\n    \\begin{align}\n        a &= b \\tag{a}\\\\\n        &=c \\tag{b}\n    \\end{align}\n\\tag{A.3}\\]\n&lt; Text before you want to reference the equation.&gt; Equation reference: Equation A.3 (a) \nThis is achieved using the following code that introduces a case-by-case treatment of the output\n::: {.content-visible when-format=\"html\"}\n$$\n    \\begin{align}\n        a &= b \\tag{a}\\\\\n        &=c \\tag{b}\n    \\end{align}\n$$ {#eq-test}\n:::\n::: {.content-visible when-format=\"pdf\"}\n    \\begin{align}\n        a &= b \\label{eq-a}\\\\\n        &=c \\label{eq-b}\n    \\end{align}\n:::\n\n`&lt;` Text before you want to reference the equation. `&gt;`\nEquation reference:\n[@eq-test (a)]{.content-visible when-format=\"html\"}\n[Equation \\ref{eq-a}]{.content-visible when-format=\"pdf\"}\nNote that \\begin{align} is invalid syntax inside the math environment for LaTeX but it is accepted by mathjax. This allows double tags for the html target. In LaTeX you cannot have these duplicate tags, but you can use the fact that Quarto converts equation references into the LaTeX reference system and LaTeX will then take all labels into consideration and the numbering simply works. Check both outputs!\n\n\n\n\n\nA.3.3 Aligned-Overset\nA LaTeX package I love is aligned-overset. To understand what it does let me first explain the command \\overset with the following demo \\[\n    x \\overset{\\text{due to b}}{=} y.\n\\] This demo is produced by the code\n$$\n    x \\overset{\\text{due to b}}{=} y.\n$$\nThe command \\overset{over}{under} essentially places the first input over the second input. It is therefore a wonderful tool for explaining equation steps. In an aligned environment however this typically breaks alignment because the entire ‘stack’ is left-aligned if the alignment symbol & is placed before. And the explanation is usually longer than the =, like here \\[\\begin{aligned}\n    x_0\n    &= x_1\n    \\\\\n    &\\overset{\\text{due to b}}= x_2\n    \\\\\n    &= x_3.\n\\end{aligned}\\]\naligned-overset allows the placement of the alignment symbol & between the {over} and {under} of \\overset, i.e.\n\\overset{over}&{under}\nand aligns the stack only on the under part. With this feature it is possible to align the equations above like so \\[\\begin{aligned}\n    x_0\n    &= x_1\n    \\\\\n    \\overset{\\text{due to b}}&= x_2\n    \\\\\n    &= x_3\n\\end{aligned}\\] By default mathjax does not implement the aligned-overset package and therefore does not allow this placement of the alignment symbol &. However, a mathjax maintainer (Davide P. Cervone) showed me how to configure mathjax to allow this placement (see this GitHub issue). This is why the equation above works. However his solution only correctly adjusts the white-space to the right and may result in overlaps on the left, e.g. \\[\\begin{aligned}\n    x^2 \\overset{\\text{due to b}}&= y\n    \\\\\n    &= z.\n\\end{aligned}\\] Nevertheless for all equations, except for the first, this is a good solution and works out of the box with this template.\n\n\nA.3.4 Theorem environments\n\nTheorem A.1 (Demo Theorem) Quarto provides certain theorem environments out of the box (see documentation)\n\n\nProof (Proof name). Usage\n::: {#thm-demo name=\"Demo Theorem\"}\ncontent\n:::\n\n::: {.proof name=\"proof name\"}\ncontent\n:::\n\n\nTheorem A.2 (Links work) See Theorem A.1\n\n\nLemma A.1 Different types of theorems however do not use the same numbering. There is no such thing as theorem groups as in LaTeX amsmath.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>User guide</span>"
+    ]
+  },
+  {
+    "objectID": "usage.html#publishing-the-book-as-a-website",
+    "href": "usage.html#publishing-the-book-as-a-website",
+    "title": "Appendix A — User guide",
+    "section": "A.4 Publishing the book as a website",
+    "text": "A.4 Publishing the book as a website\nQuarto documents many ways to publish a Quarto book as a website, the way I recommend uses Github pages and the command quarto publish. This is a direct link to this part of the documentation.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>User guide</span>"
+    ]
+  },
+  {
+    "objectID": "usage.html#footnotes",
+    "href": "usage.html#footnotes",
+    "title": "Appendix A — User guide",
+    "section": "",
+    "text": "required for the global macro feature Section A.2↩︎\ndue to the issues with equation numbering in quarto explained in Section A.3.2 every line was manually tagged using \\tag here instead of automatically numbered.↩︎",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>User guide</span>"
+    ]
+  },
+  {
+    "objectID": "extensions.html",
+    "href": "extensions.html",
+    "title": "Appendix B — Useful extensions",
+    "section": "",
+    "text": "You may find the following quarto extensions useful\n\nCallouty Theorems wraps Theorems and Proofs into a callout block of your choosing (in particular proofs can be made collapsible)\nLatex Environment wraps quarto divs into a LaTeX environment of your choosing.\nQuarto TikZ A filter that renders PGF/TikZ diagrams in HTML as SVG.\nhoneypot Add hidden instructions to HTML homework assignments to help detect cheating by unauthorized LLM usage.\nFont awesome Extension This extension provides support including free icons (e.g. ) provided by Font Awesome.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Useful extensions</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Appendices",
+      "References"
+    ]
+  }
+]
