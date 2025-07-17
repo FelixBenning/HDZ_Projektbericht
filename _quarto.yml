@@ -11,8 +11,9 @@ book:
   repo-url: https://github.com/FelixBenning/hdz_abschlussbericht 
   chapters:
     - index.qmd
-  appendices:
     - overview.qmd
+    - summary.qmd
+  appendices:
     - usage.qmd
     - extensions.qmd
     - references.qmd

@@ -1,0 +1,99 @@
+{{< include _macro_processing.qmd >}}
+
+# Behind the Scenes
+
+To keep the technical details light, I will only
+give an overview of what I done and provide links to
+the technical details.
+
+## Interactivity
+
+The reason one may want to provide mathematical documents as a website is of
+course interactivity. Basic form such as `hover-overs` for references already
+work out of the box.
+
+- **H5P Integration**: With help from the maintainer with
+([the execution order of Javascript](https://github.com/tunapanda/h5p-standalone/issues/174) and [relative links](https://github.com/tunapanda/h5p-standalone/issues/176)) I integrated the [h5p-standalone](https://github.com/tunapanda/h5p-standalone)
+project into this template. The inclusion of `h5p` elements is documented in @sec-h5p.
+
+- **Collapsible Proofs** are currently not available out of the box. But it should be relatively easy to create an extension to
+enable them in the future. There is an extension called [Callouty Theorems](https://github.com/sun123zxy/quarto-callouty-theorem) but the solution is not ideal (Details in @sec-the-ugly)
+
+## Equations 
+
+An equation
+$$\begin{aligned}
+	(a+b)^2
+	&= (a+b)(a+b)
+	\\
+	&= a^2 + 2ab + b^2
+\end{aligned}
+$$ {#eq-al-ref-example}
+may want to be referenced like so, (@eq-al-ref-example). While Quarto does clearly
+provide a mechanism to do so, it does not provide a mechanism to reference
+individual lines of an equation. This is a feature that `LaTeX` does
+provide and other users have already reported this feature as missing in [this discussion on
+GitHub](https://github.com/quarto-dev/quarto-cli/issues/2275). This is
+not often a problem, since you mostly want to reference the entire equation. But
+it always hurts, when a feature is taken away from you, so people are naturally
+looking for workarounds. However the workaround posted in the discussion linked above
+does not work for referencing equation across chapters and breaks all the
+Quarto features (like hover over) for equations. For this reason I suggest a different
+workaround (Workaround 2 in @sec-equations-quarto). It works across chapters using
+the Quarto citation mechanism but causes more work in the few places where it is
+actually necessary to reference individual lines.
+
+### Aligned-Overset
+ 
+The `LaTeX` package [aligned-overset](https://ctan.org/pkg/aligned-overset) is something I use often. It is not available
+in `MathJax`, which renders mathematical equations in `html`.
+I therefore opened a [feature request](https://github.com/mathjax/MathJax/issues/3367) on the MathJax repository on whether it may implement this package. The maintainer suggested a partial solution which is now included in the template (see @sec-aligned-overset).
+
+## Global TeX Macros
+
+One of the main technical challenges was to enable global LaTeX macros across a
+Quarto project. This functionality is crucial for large mathematical documents,
+particularly textbooks or collections of exercises. You can find
+a motivation for the use of Macros and the way to enable them
+in @sec-global-macros.
+
+The issue that needs to be overcome boils down to the following:
+
+- The `LaTeX`/`pdf` output is one large document with multiple chapters. Macros
+should therefore only be included once in the entire document. `LaTeX` in fact
+throws an error if a Macro is included twice to warn
+the user of accidental redefinitions. 
+
+- The `html` output produces a webpage for each chapter. Macros must therefore be included in *every* chapter.
+
+While Quarto does provide mechanisms to include something in every file, the Macros
+also need to be processed. And for technical reasons it would be preferable if they
+were processed during the conversion from Quarto to `html` and not later by the
+`JavaScript` library. This design constraint made this very difficult.
+A full writeup was provided as a [GitHub Discussion](https://github.com/quarto-dev/quarto-cli/discussions/12838) to be publicly available. The solution I used for this
+template is described as an "Alternative" there, because it requires some technical
+trickery that would be annoying if you had to do it yourself. But as part of a
+template this seems better, as it allows the macros to be documented with comments.
+ 
+To package the solution nicely, I wanted to hide the technical stuff in the
+template. But this unfortunately does not work as anticipated, as discussed in
+[this issue](https://github.com/quarto-dev/quarto-cli/issues/12898).
+
+The end result of a few days of trying is a solution with some ugly quirks:
+You need to include a special line at the top of every chapter file to get Macros
+to work and there is a `_macro_processing.qmd` file in your root directory that must
+not be touched.
+
+
+## Pedagogical Context and Future Use
+
+The primary audience of this template are mathematicians that want to create
+interactive content. Svenja Kaiser, a PhD candidate in mathematics education,
+expressed interest in using the template to translate proprietary content from
+an InnoMA project into open formats. One option she considered was H5P which
+nicely integrates with this template. However a solution to enable equations in
+H5P is still needed.
+
+While there are still some rough edges that may need polishing, I can see Quarto
+eventually satisfying all the requirements needed to create great interactive
+mathematical content.

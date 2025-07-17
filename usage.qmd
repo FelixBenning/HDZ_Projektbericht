@@ -40,7 +40,7 @@ that if they do not have access to the GitHub repository they cannot change it
 directly.
 :::
 
-## H5P Integration
+## H5P Integration {#sec-h5p}
 
 This template includes the [`tunapanda/h5p-standalone`](https://github.com/tunapanda/h5p-standalone) project and thereby
 supports the addition of H5P files without the need for a separate
@@ -230,7 +230,7 @@ is converted into a numbered equation
 	f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
 \end{equation}
 ```
-rendered in `html` as
+rendered as
 $$
 	f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
 $$ {#eq-differentiation}
