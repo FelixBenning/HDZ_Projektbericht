@@ -4,9 +4,9 @@
 
 This project aimed to create a reusable and well-documented Quarto template
 tailored to the needs of mathematicians, particularly for educational content.
-The result is available at <https://www.FelixBenning.github.io/math-book/>, which
+The result is available at <https://FelixBenning.github.io/math-book/>, which
 provides both the template and its extensive documentation.
 
 This final report was generated using this template (reusing some of the
 documentation) and is also available as a webpage at
-<https://www.FelixBenning.github.io/HDZ_Projectbericht/>.
+<https://FelixBenning.github.io/HDZ_Projektbericht/>.
